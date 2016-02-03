@@ -1,1 +1,36 @@
 Index
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h4>Listing vms</h4>
+  </div>
+
+  	<div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Name</th>
+	        <th>Hash</th>
+	        <th>Subname</th>
+	        <th colspan="3"></th>
+	      </tr>
+	    </thead>
+
+	    <tbody>
+	      <% @vms.each do |vm| %>
+	        <tr>
+	          <td><%= vm.name %></td>
+	          <td><%= vm.vhash %></td>
+	          <td><%= vm.subname %></td>
+	          <td><%= link_to 'Show', vm, :class => 'btn btn-default btn-xs' %></td>
+	          <td><%= link_to 'Edit', edit_vm_path(vm), :class => 'btn btn-default btn-xs' %></td>
+	          <td><%= link_to 'Destroy', vm, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger btn-xs' %></td>
+	        </tr>
+	      <% end %>
+	    </tbody>
+	  </table>
+	</div>
+
+  <br>
+
+  <%= link_to 'New VM', new_vm_path, :class => 'btn btn-default btn-xs' %>
+</div>

@@ -25,8 +25,10 @@ class ApplicationController < ActionController::Base
   		if current_user.role == "admin"
   			true
   		else
-  			redirect_to new_user_session_path
+  			redirect_to root_path
   		end
+    else
+      redirect_to new_user_session_path
   	end
   end
 

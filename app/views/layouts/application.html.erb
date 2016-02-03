@@ -53,16 +53,17 @@
               </button>
               <ul class="dropdown-menu pull-right">
                 <% if current_user %>
-                <li><%= link_to current_user.name, user_path(current_user.id) %></li>
-                <li><%= link_to "Edit profile", edit_user_path(current_user), :class => 'navbar-link' %></li>
-                <li><% if current_user.role == "admin" %>
-                      <%= link_to t('user.users'), "/users"%>
-                    <% end %></li>
-                <li role="separator" class="divider"><hr></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+                  <li><%= link_to current_user.name, user_path(current_user.id) %></li>
+                  <li><%= link_to "Edit profile", edit_user_path(current_user), :class => 'navbar-link' %></li>
+                  <% if current_user.role == "admin" %>
+                      <li><%= link_to t('user.users'), "/users"%></li>
+                      <li><%= link_to t('user.vms'), "/vms"%></li>
+                  <% end %>
+                  <li role="separator" class="divider"><hr></li>
+                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
                 <% else %>
-                <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-                <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                  <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
                 <% end %>
               </ul>
             </div>
