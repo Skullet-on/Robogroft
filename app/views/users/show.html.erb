@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>Information about user</h4>
+	</div>
+	<div class="panel-body">
+		<p id="notice"><%= notice %></p>
+
+		<p>
+		  <strong>Name:</strong>
+		  <%= @user.name %>
+		</p>
+
+		<p>
+		  <strong>Email:</strong>
+		  <%= @user.email %>
+		</p>
+
+		<p>
+		  <strong>Role:</strong>
+		  <%= @user.role %>
+		</p>
+	</div>
+
+	<%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-default btn-xs' %>
+	<%= link_to 'Back', users_path, :class => 'btn btn-default btn-xs' %>
+</div>

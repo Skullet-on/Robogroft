@@ -1,0 +1,168 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>New task</h4>
+  </div>
+  <div class="panel-body">
+    <!--
+    <%= form_for @task do |e| %>
+    	<div class="field">
+       	<%= e.label :name %><br />
+       	<%= e.text_field :name, autofocus: true %>
+      </div>
+      <div class="field">
+        <%= e.label :email  %>
+        <%= e.text_field :email %>
+      </div>
+      <div class="field">
+       	<%= e.label :status %>
+       	<%= e.text_field :status %><br>
+      </div>
+      <div class="field">
+       	<%= e.label :timeout %>
+       	<%= e.text_field :timeout %><br>
+      </div>
+      <div class="field">
+        <p>Number: 
+          <%= e.select :number, (['1', '2', '3', '4'].map {|i| [i,i] }) %>
+        </p>
+      </div>
+      <%= e.submit "Save" %>
+    <% end %> -->
+    <%= form_for @task, :url => { :action => "upload" }, :html=>{ :id => "sendform", :onsubmit => "return validateForm(this)" } do |f| %>
+      
+      <b><%= t('all.step') %> 1. <%= t('all.task_name') %> </b>
+      <%= f.text_field :name, :id => "textfield", :class => "form-control", :value => "Task_#{@time}"%>
+
+      <b><%= t('all.step') %> 2. <%= t('all.select_vms') %> </b>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Filter
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <table class="table table-hover">
+              <tbody>
+                <tr class="default" id="fil" name="filters">
+                  <td style='text-align: center;'>
+                    <select class='form-control' id='select1' onchange='filtero(this);' name='select'>
+                      <% for i in 0..@os.size-1 %>
+                        <% if i==0 %>
+                          <option value="<%= i %>" selected='selected'><%= @os[i] %></option>
+                        <% else %>
+                          <option value="<%= i %>"><%= @os[i] %></option>
+                        <% end %>
+                      <% end %>
+                    </select>
+                  </td>
+                  <td style='text-align: center;'><span class='glyphicon glyphicon-signal' aria-hidden='true'></span></td>
+                  <td style='text-align: center;'>
+                    <select class='form-control' id='select2' onchange='filtero(this);' name='select'>
+                      <% for i in 0..@os.size-1 %>
+                        <% if i==@os.size-1 %>
+                          <option value="<%= i %>" selected='selected'><%= @os[i] %></option>
+                        <% else %>
+                          <option value="<%= i %>"><%= @os[i] %></option>
+                        <% end %>
+                      <% end %>
+                    </select>
+                  </td>
+                </tr>
+                <tr class="default">
+                  <td style='text-align: center;'>
+                    <i><%= t('all.checkall') %> </i><%= check_box_tag('filter', 'checkall', false, :onClick => "filtero(this);", :checked => true) %>
+                    <div id="number"><h4 class="num"><%= @machines.size %></h4></div>
+                    <%= t('all.checked') %>
+                  </td>
+                  <td style='text-align: left;'>
+                    <input type="radio" name="group1" onclick="filtero(this)" value="x86"> x86<br>
+                    <input type="radio" name="group1" onclick="filtero(this)" value="x64"> x64<br>
+                    <input type="radio" name="group1" onclick="filtero(this)" value=" " checked><%= t('all.all') %><br>
+                    <input type="radio" name="group1" onclick="filtero(this)" value="custom"> <%= t('all.custom') %>
+                  </td>
+                  <td style='text-align: left;'>
+                    <input type="radio" name="group2" onclick="filtero(this)" value="server"> <%= t('all.server') %><br>
+                    <input type="radio" name="group2" onclick="filtero(this)" value="desktop"> <%= t('all.desktop') %><br>
+                    <input type="radio" name="group2" onclick="filtero(this)" value=" " checked> <%= t('all.all') %><br>
+                    <input type="radio" name="group2" onclick="filtero(this)" value="custom"> <%= t('all.custom') %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="max-height:350px; overflow-y: auto; bgcolor:#000000;">
+        <table class="table table-hover">
+          <tbody id="content">
+            <% for i in 0..@os.size-1 %>
+              <tr class='info'>
+                <td style='width:160px; text-align: center;'>
+                </td>
+                <td style='text-align: center;'><i><%= @os[i] %></i>
+                </td>
+              <tr>
+              <% for j in 0..@machines.size-1 %>
+                <% if @machines[j].name.include? @keyword[i] %>
+                <tr class='warning'>
+                  <td style='width:160px; text-align: center;'>
+                    <%= f.check_box_tag("#{i}", "#{@machines[j].state}", false, :onClick => "checker()", :checked => true, :name => "vms[]") %>
+                  </td>
+                  <td style='text-align: center;'><%= @machines[j].name %>
+                  </td>
+                </tr>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <b><%= t('all.step') %> 3. <%= t('all.uploadfile') %> </b>
+      <div id="filer">
+        <h5><%= t('all.mainfile') %></h5>
+        <div class="input-group has-default has-feedback" name="dynamicadd">
+          <%- f.file_field  :file, :class => "form-control", :onchange =>"validateFiles(this);",:data => {:max_file_size => 32.megabytes}, :id => "filefield", accept: 'application/octet-stream' %>
+          <input accept='application/octet-stream' class='form-control' data-max-file-size='33554432' id='filefield' name='file[]' onchange='validateFiles(this);' type='file'><span class="input-group-addon">*</span>
+        </div>
+        <h5><%= t('all.additionalfiles') %></h5>
+      </div>
+      <input name='arrow' class='btn btn-link' type='button' onclick='addfile()' value='Add'>
+      <div class="input-group">
+        <span class="input-group-addon"><%= f.check_box_tag('check_field2', 'check_field2', false, :onClick => "checkfield2(this);", :checked => false) %></span>
+        <%= f.text_field :cmd, :class => "form-control", :size => 58, :id => "textfield2", :value => "", :disabled => true %>
+        <span class="input-group-addon"><%= t('cmd') %></span>
+      </div>
+
+      <b><%= t('all.step') %> 4. <%= t('all.advancedoptions') %> </b>
+      <div class="input-group">
+        <span class="input-group-addon"><%= t('all.settimeout') %> (<%= t('all.default') %>: <b>3</b> <%= t('all.minutes') %>)</span>
+        <span class="input-group-addon"><%= f.check_box_tag('check_field', 'check_field', false, :onClick => "checkfield(this);", :checked => false) %></span>
+        <%= f.text_field :timeout, :class => "form-control", :id => "textfield3", :value => "", :disabled => true, :placeholder => "0" %>
+        <span class="input-group-addon">.<%= t('all.seconds') %></span>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon"><%= t('all.nummachines') %>:.</span>
+        <%= f.select_tag(:number, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4]], 1), { :class => 'form-control'}) %>
+        <br>
+      </div>    
+      <div class="input-group">
+        <span class="input-group-addon"><%= f.check_box_tag( :rest , 'rest', false, :checked => true) %></span>
+        <span class="input-group-addon"><%= t('all.restore') %></span>
+      </div>
+      <div id="asd">
+        <div class="input-group" name='dynamic'>
+          <input type='text' name='email[]' onchange='addemail(this)' class='form-control' id='email' placeholder='example@gmail.com'>
+          <span class="input-group-addon">@</span>
+        </div>
+      </div>
+
+      <b><%= t('all.step') %> 5. <%= t('all.execute') %> :) </b>
+      <%= f.submit "GO", :class => "btn btn-default btn-lg btn-block" %>
+
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>Pending tasks</h4>
+	</div>
+	<div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
+		<table class="table table-hover">
+			<tr align="center">
+				<td>No: </td>
+				<td>Task name </td>
+				<td>Creator </td>
+				<td>Status </td>
+				<td>Progress </td>
+			</tr>
+			<% for i in 0..@tasks.size-1 %>
+				<tr align="center">
+					<td><p data-toggle="tooltip" data-placement="top" title="Number"><%= i+1 %></p></td>
+					<td><p data-toggle="tooltip" data-placement="top" title="Task name"><%= link_to @tasks[i].name, task_path(@tasks[i])%></p></td>
+					<td><p data-toggle="tooltip" data-placement="top" title="Creator"><% u = User.where(id: @tasks[i].user_id).first %><%= u.name %></p></td>
+					<td><p data-toggle="tooltip" data-placement="top" title="Status"><%= @tasks[i].status %></p></td>
+					<td><p data-toggle="tooltip" data-placement="top" title="Progress"><%= @tasks[i].progress %></p></td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>

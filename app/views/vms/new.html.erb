@@ -1,0 +1,6 @@
+New
+<br>
+<%= form_for @vm, :url => { :action => "create"} do |e| %>
+	<%= e.text_field :name, :class => "form-control", :type => "hidden", :value => "Task", :maxlength => "40" %>
+	<%= e.submit "GO", :class => "btn btn-primary btn-md btn-block" %>
+<% end %>

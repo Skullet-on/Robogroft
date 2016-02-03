@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>My tasks</h4>
+	</div>
+	<div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
+		<table class="table table-hover">
+			<tr align="center">
+				<td width="20px">Name </td>
+				<td width="20px">Email </td>
+				<td>Status </td>
+				<td>Timeout </td>
+				<td>Progress </td>
+				<td>Cmd </td>
+				<td>File </td>
+				<td>Vms </td>
+				<td>Restore? </td>
+				<td>Number </td>
+			</tr>
+			<% @tasks.each do |e| %>
+				<tr align="center">
+					<td><%= link_to e.name, task_path(e)%></td>
+					<td>
+						<% for i in 0..e.email.size-1 %>
+							<%= e.email[i] %></br>
+						<% end %>
+					</td>
+					<td><%= e.status %></td>
+					<td><%= e.timeout %></td>
+					<td><%= e.progress %></td>
+					<td><%= e.cmd %></td>
+					<td><%= e.file %></td>
+					<td>
+						<% for i in 0..e.vms.size-1 %>
+							<%= e.vms[i].name %></br>
+						<% end %>
+					</td>
+					<td><%= e.restore %></td>
+					<td><%= e.number %></td>
+				</tr>
+			<% end %>
+		</table>
+		<%= link_to "Add new task", new_task_path %>
+	</div>
+</div>

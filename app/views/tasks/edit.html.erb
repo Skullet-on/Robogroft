@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4>Edit task</h4>
+  </div>
+  <div class="panel-body">
+    <%= form_for @task do |e| %>
+      Task name:
+        <div class="input-group" name='dynamic'>    
+          <%= e.text_field :name, :class => "form-control"%>
+          <span class="input-group-addon"><%= t('all.task_name') %></span>
+        </div><br/>
+      <%= t('all.CMD') %>:
+        <div class="input-group">
+          <%= e.text_field :cmd, :class => "form-control", :size => 58 %><br/>
+          <span class="input-group-addon"><%= t('all.cmd') %></span>
+        </div><br/>
+      Timeout:
+        <div class="input-group">
+          <%= e.text_field :timeout, :class => "form-control" %>
+          <span class="input-group-addon"><%= t('all.seconds') %></span>
+        </div><br/>
+      Number of concurrent machines:
+        <%= e.select :number, (['1', '2', '3', '4'].map {|i| [i,i] }), {}, {:class => "form-control"} %><br/>
+      <%= e.submit "Save", :class => "btn btn-default btn-md btn-block" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<b>Name :</b> <%= @parameters[:task][:name] %><br />
+<b>Vms :</b> <%= @parameters[:task][:vms] %><br />
+<b>File :</b> <%= @parameters[:task][:file] %><br />
+<b>Cmd :</b> <%= @parameters[:task][:cmd] %><br />
+<b>Timeout :</b> <%= @parameters[:task][:timeout] %><br />
+<b>Number :</b> <%= @parameters[:task][:number] %><br />
+<b>Restore :</b> <%= @parameters[:task][:restore] %><br />
+<b>Emails :</b> <%= @parameters[:task][:email] %><br />
+_________________________________________________<br />
+<b>User</b><br />
+<b>Id :</b> <%= @current_user.id %><br />
+<b>Name :</b> <%= @current_user.name %><br />
+<b>Email :</b> <%= @current_user.email %><br />
+*************************************************<br />
+<%= @params %><br />
+*************************************************<br />
+<b>File :</b> <%=  @parameters %><br />
+*************************************************<br />
+<% for i in 0..@parameters[:task][:email].size-1 %>
+	<%= i %> : <%= @parameters[:task][:email][i] %><br />
+<% end %>
+*************************************************<br />
+<b>Params :</b> <%=  params %><br />
+*************************************************<br />

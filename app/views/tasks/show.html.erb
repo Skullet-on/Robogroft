@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4><%= @task.name %></h4>
+	</div>
+	<div class="panel-body">
+		<table>
+			<tr>
+				<td><b>Email: </b></td>
+				<td>
+					<% for i in 0..@task.email.size-1 %>
+						<%= @task.email[i] %></br>
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Status: </b></td>
+				<td><%= @task.status %></td>
+			</tr>
+			<tr>
+				<td><b>Timeout: </b></td>
+				<td><%= @task.timeout %></td>
+			</tr>
+			<tr>
+				<td><b>Progress: </b></td>
+				<td><%= @task.progress %></td>
+			</tr>
+			<tr>
+				<td><b>Cmd: </b></td>
+				<td><%= @task.cmd %></td>
+			</tr>
+			<tr>
+				<td><b>File: </b></td>
+				<td><%= @task.file %></td>
+			</tr>
+			<tr>
+				<td><b>Restore? </b></td>
+				<td><%= @task.restore %></td>
+			</tr>
+			<tr>
+				<td><b>Number: </b></td>
+				<td><%= @task.number %></td>
+			</tr>
+			<tr>
+				<td><b>Vms: </b></td>
+				<td>
+					<% for i in 0..@task.vms.size-1 %>
+						<%= @task.vms[i].name %></br>
+					<% end %>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<%= link_to "Edit", edit_task_path, :class => 'btn btn-default btn-xs' %>
+	<%= link_to "Delete", @task, method: :delete, :class => 'btn btn-default btn-xs' %>
+</div>
