@@ -8,14 +8,14 @@
 "return validateForm(this)" } do |e| %>
 
       <b><%= t('all.step') %> 1. <%= t('all.task_name') %> </b><br/>
-        Enter Task name:
-        <div id="taskname" class="input-group" name='dynamic'>    
-          <%= e.text_field :name, :class => "form-control", :value => "Task_#{@time}", :maxlength => "40" %>
-          <span class="input-group-addon"><%= t('all.task_name') %></span>
-        </div><br/>
+      Enter Task name:
+      <div id="taskname" class="input-group" name='dynamic'>    
+        <%= e.text_field :name, :class => "form-control", :value => "Task_#{@time}", :maxlength => "40" %>
+        <span class="input-group-addon"><%= t('all.task_name') %></span>
+      </div><br/>
 
       <b><%= t('all.step') %> 2. <%= t('all.select_vms') %> </b><br/>
-        <div class="panel panel-default">
+      <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingTwo">
           <h4 class="panel-title">
             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -76,47 +76,47 @@
           </div>
         </div>
       </div>
-        <div style="max-height:350px; overflow-y: auto; bgcolor:#000000;">
-          <table class="table table-hover">
-            <tbody id="content">
-              <% for i in 0..@os.size-1 %>
-                <tr class='info'>
-                  <td style='width:160px; text-align: center;'>
-                  </td>
-                  <td style='text-align: center;'><i><%= @os[i] %></i>
-                  </td>
-                <tr>
-                <% for j in 0..@vms.size-1 %>
-                  <% if @vms[j].subname == @os[i] %>
+      <div style="max-height:350px; overflow-y: auto; bgcolor:#000000;">
+        <table class="table table-hover">
+          <tbody id="content">
+            <% for i in 0..@os.size-1 %>
+              <tr class='info'>
+              <td style='width:160px; text-align: center;'>
+              </td>
+              <td style='text-align: center;'><i><%= @os[i] %></i>
+              </td>
+              </tr>
+              <% for j in 0..@vms.size-1 %>
+                <% if @vms[j].subname == @os[i] %>
                   <tr name="vmss" class='default'>
-                    <td style='width:160px; text-align: center;'>
-                      <%= e.check_box :vms, {:multiple => true, :id => "#{j}", :onClick => "checker()", :checked => true}, "#{@vms[j].id}", false%>
-                    </td>
-                    <td style='text-align: center;'><%= @vms[j].name %>
-                    </td>
+                  <td style='width:160px; text-align: center;'>
+                    <%= e.check_box :vms, {:multiple => true, :id => "#{j}", :onClick => "checker()", :checked => true}, "#{@vms[j].id}", false%>
+                  </td>
+                  <td style='text-align: center;'><%= @vms[j].name %>
+                  </td>
                   </tr>
-                  <% end %>
                 <% end %>
               <% end %>
-            </tbody>
-          </table>
-        </div><br/>
+            <% end %>
+          </tbody>
+        </table>
+      </div><br/>
 
       <b><%= t('all.step') %> 3. <%= t('all.upload_file') %> </b><br/>
-        <div id="filer">
-          <%= t('all.file') %>:
-          <div id="files" class="input-group has-default has-feedback" name="dynamicadd">
-            <%= e.file_field  :file, :class => "form-control", :onchange =>"validateFiles(this);", :data => {:max_file_size => 32.megabytes}, accept: 'application/octet-stream', :multiple => true %>
-            <span class="input-group-addon">File</span>
-          </div>
-          <%= t('all.additional_files') %>:<br/>
+      <div id="filer">
+        <%= t('all.file') %>:
+        <div id="files" class="input-group has-default has-feedback" name="dynamicadd">
+          <%= e.file_field  :file, :class => "form-control", :onchange =>"validateFiles(this);", :data => {:max_file_size => 32.megabytes}, accept: 'application/octet-stream', :multiple => true %>
+          <span class="input-group-addon">File</span>
         </div>
-        <input name='arrow' class='btn btn-link' type='button' onclick='addfile()' value='Add'><br/>
-        <%= t('all.CMD') %>:
-        <div id="comd" class="input-group">
-          <%= e.text_field :cmd, :class => "form-control", :size => 58, :value => "" %><br/>
-          <span class="input-group-addon"><%= t('all.cmd') %></span>
-        </div><br/>
+        <%= t('all.additional_files') %>:<br/>
+      </div>
+      <input name='arrow' class='btn btn-link' type='button' onclick='addfile()' value='Add'><br/>
+      <%= t('all.CMD') %>:
+      <div id="comd" class="input-group">
+        <%= e.text_field :cmd, :class => "form-control", :size => 58, :value => "" %><br/>
+        <span class="input-group-addon"><%= t('all.cmd') %></span>
+      </div><br/>
 
       <b><%= t('all.step') %> 4. <%= t('all.advanced_options') %> </b><br/>
       Timeout:
@@ -139,9 +139,6 @@
 
       <b><%= t('all.step') %> 5. <%= t('all.execute') %> :) </b><br/>
       <%= e.submit "GO", :class => "btn btn-primary btn-md btn-block" %>
-
-
     <% end %>
-
   </div>
 </div>

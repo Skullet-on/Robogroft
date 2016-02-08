@@ -92,10 +92,8 @@ class TasksController < ApplicationController
 		end
 		if @task.save
 		  	current_user.tasks << @task
-		  	#for i in 0..@params[:vms].size-1
 		  		@vms = Vm.where(:id => @params[:vms])
 		  		@task.vms << @vms
-		  #	end
 		   	redirect_to @task
 		else
 		   	render 'new'
