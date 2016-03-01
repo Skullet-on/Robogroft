@@ -1,3 +1,4 @@
+require 'colorize'
 class TasksController < ApplicationController
 
 	before_action :find_task, only: [:edit, :show, :update, :destroy]
@@ -73,6 +74,7 @@ class TasksController < ApplicationController
 	def upload
 		@parameters = params
 		@params = params[:task]
+		@file = @params[:file]
 		if @params[:file]
 			@params[:file] = @params[:file][0].original_filename
 		else
@@ -84,9 +86,34 @@ class TasksController < ApplicationController
 		@params[:timeout] =  @params[:timeout].to_i
 		@params[:number] = @params[:number].to_i
 		@params[:priority] = 0
+		@command_line = @params[:cmd] 
 		@task = Task.new(task_params(@params))
 		if @task.save
 			@task.priority = @task.id
+			FileUtils.mkdir_p "#{$pathPub}/Files/#{@task.id}"
+			if @file
+				for i in 0..@file.size-1
+					tmp = @file[i].tempfile
+					@original_file_name = "#{@file[i].original_filename}"
+					file = File.join("#{$pathPub}/Files/#{@task.id}", @file[i].original_filename)
+					@file_size = File.size(tmp)
+					File.open(file,"wb") do |f|
+          				f.write(tmp.read)
+          			end
+				end
+			end
+			File.open("#{$pathPub}/Files/#{@task.id}/test.bat", 'w') do |f| 
+		        f.write("@echo off\n")
+		        f.write("timeout /t 10\n")
+		        f.write("pushd %~dp0\n")
+		        if @file
+		          f.write("%~dp0\\#{@original_file_name} #{@command_line} > %~dp0\\stdout.txt 2> %~dp0\\stderror.txt\n")
+		        else
+		          f.write("#{@command_line} > %~dp0\\stdout.txt 2> %~dp0\\stderror.txt\n")
+		        end
+		        f.write("echo %errorlevel% > %~dp0\\retcode.txt\n")
+		        f.write("shutdown /s /t 30\n")
+		    end
 		else
 			render 'new'
 		end
@@ -102,7 +129,7 @@ class TasksController < ApplicationController
 
 	def pending
 	  @task = Task.new
-	  @tasks = Task.all.order("priority")
+	  @tasks = Task.where(status: "Wait").order("priority")
 	end
 
 	def current

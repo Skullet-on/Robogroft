@@ -1,0 +1,3 @@
+select vdisk file="D:\Vhd\3.vhd"
+detach vdisk
+exit

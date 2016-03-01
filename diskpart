@@ -1,0 +1,4 @@
+require 'colorize'
+
+`select vdisk file=\"d:\\Vhd\\1.vhd\"`
+`attach vdisk\n`

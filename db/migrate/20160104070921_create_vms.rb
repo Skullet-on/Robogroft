@@ -9,6 +9,6 @@ class CreateVms < ActiveRecord::Migration
       t.float :progress, null: false, default: 0.0
       t.timestamps
     end
-    add_index :vms, :hash,                unique: true
+    add_index :vms, :vhash,                unique: true
   end
 end

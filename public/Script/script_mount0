@@ -1,0 +1,3 @@
+select vdisk file="D:\Vhd\0.vhd"
+attach vdisk
+exit

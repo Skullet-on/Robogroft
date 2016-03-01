@@ -252,7 +252,7 @@ function addfile(param){
   if (file.length < 5){
 
     output = "<div id='emaildiv' class='input-group' name='dynamicadd'>";
-    output += "<input accept='' class='form-control' data-max-file-size='33554432' id='task_file' name='task[file]' type='file' multiple='multiple'>";
+    output += "<input accept='' class='form-control' data-max-file-size='33554432' id='task_file' name='task[file][]' type='file' multiple='multiple'>";
     output += "<span class='input-group-addon'>";
     output += "<a name='arrow' type='button' onclick='delfile(this);' value='del'>delete</a></span>";
     output += "</div>";

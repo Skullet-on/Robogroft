@@ -12,6 +12,8 @@ gem	'omniauth-vkontakte'
 gem 'omniauth-twitter'
 gem "twitter-bootstrap-rails"
 gem 'devise-bootstrap-views'
+gem 'virtualbox'
+gem 'colorize'
 
 ###########
 
