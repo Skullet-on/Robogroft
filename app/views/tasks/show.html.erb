@@ -3,9 +3,9 @@
 		<h4><%= @task.name %></h4>
 	</div>
 	<div class="panel-body">
-		<table>
+		<table class="table table-hover">
 			<tr>
-				<td><b>Email: </b></td>
+				<td><b><%= t('tasks.email') %>: </b></td>
 				<td>
 					<% for i in 0..@task.email.size-1 %>
 						<%= @task.email[i] %></br>
@@ -13,35 +13,35 @@
 				</td>
 			</tr>
 			<tr>
-				<td><b>Status: </b></td>
+				<td><b><%= t('tasks.status') %>: </b></td>
 				<td><%= @task.status %></td>
 			</tr>
 			<tr>
-				<td><b>Timeout: </b></td>
+				<td><b><%= t('tasks.timeout') %>: </b></td>
 				<td><%= @task.timeout %></td>
 			</tr>
 			<tr>
-				<td><b>Progress: </b></td>
+				<td><b><%= t('tasks.progress') %>: </b></td>
 				<td><%= @task.progress %></td>
 			</tr>
 			<tr>
-				<td><b>Cmd: </b></td>
+				<td><b><%= t('tasks.cmd') %>: </b></td>
 				<td><%= @task.cmd %></td>
 			</tr>
 			<tr>
-				<td><b>File: </b></td>
+				<td><b><%= t('tasks.file') %>: </b></td>
 				<td><%= @task.file %></td>
 			</tr>
 			<tr>
-				<td><b>Restore? </b></td>
+				<td><b><%= t('tasks.rest') %> </b></td>
 				<td><%= @task.restore %></td>
 			</tr>
 			<tr>
-				<td><b>Number: </b></td>
+				<td><b><%= t('tasks.number') %>: </b></td>
 				<td><%= @task.number %></td>
 			</tr>
 			<tr>
-				<td><b>Vms: </b></td>
+				<td><b><%= t('tasks.vms') %>: </b></td>
 				<td>
 					<% for i in 0..@task.vms.size-1 %>
 						<%= @task.vms[i].name %></br>
@@ -50,6 +50,6 @@
 			</tr>
 		</table>
 	</div>
-	<%= link_to "Edit", edit_task_path, :class => 'btn btn-default btn-xs' %>
-	<%= link_to "Delete", @task, method: :delete, :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('all.edit'), edit_task_path, :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('all.delete'), @task, method: :delete, :class => 'btn btn-default btn-xs' %>
 </div>

@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<% if current_user %>
+			<h4><%= current_user.name %></h4>
+		<% else %>
+			<h4><%= t('all.user') %></h4>
+		<% end %>
+	</div>
+	<div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
+		<%= t('pages.tasks') %>: 
+	</div>
+</div>

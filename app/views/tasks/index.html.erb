@@ -1,20 +1,20 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h4>My tasks</h4>
+		<h4><%= t('tasks.my') %></h4>
 	</div>
 	<div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
 		<table class="table table-hover">
 			<tr align="center">
-				<td width="20px">Name </td>
-				<td width="20px">Email </td>
-				<td>Status </td>
-				<td>Timeout </td>
-				<td>Progress </td>
-				<td>Cmd </td>
-				<td>File </td>
-				<td>Vms </td>
-				<td>Restore? </td>
-				<td>Number </td>
+				<td width="20px"><%= t('tasks.name') %> </td>
+				<td width="20px"><%= t('tasks.email') %> </td>
+				<td><%= t('tasks.status') %> </td>
+				<td><%= t('tasks.timeout') %> </td>
+				<td><%= t('tasks.progress') %> </td>
+				<td><%= t('tasks.cmd') %> </td>
+				<td><%= t('tasks.file') %> </td>
+				<td><%= t('tasks.vms') %> </td>
+				<td><%= t('tasks.rest') %>? </td>
+				<td><%= t('tasks.number') %> </td>
 			</tr>
 			<% @tasks.each do |e| %>
 				<tr align="center">
@@ -39,6 +39,6 @@
 				</tr>
 			<% end %>
 		</table>
-		<%= link_to "Add new task", new_task_path %>
+		<%= link_to t('tasks.add'), new_task_path %>
 	</div>
 </div>

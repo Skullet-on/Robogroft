@@ -1,11 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-  <h4>Create VMs list</h4>
+  <h4><%= t('vms.updatelist') %></h4>
   </div>
   <div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
 	<%= form_for @vm, :url => { :action => "create"} do |e| %>
 		<%= e.text_field :name, :class => "form-control", :type => "hidden", :value => "Task", :maxlength => "40" %>
-		<%= e.submit "GO", :class => "btn btn-primary btn-md btn-block" %>
+		<%= e.submit t('vms.go'), :class => "btn btn-primary btn-md btn-block" %>
 	<% end %>
   </div>
 </div>
