@@ -57,6 +57,15 @@ def calculateprogress(times, currentvms, usertimeout, mutex)
 end
 
 def copyFiles(i, id)
+	puts "Thread Start cpy".red
+	system("diskpart /s #{$pathScript}/script_mount#{i}")
+	system("diskpart /s #{$pathScript}/script_vm#{i}")
+	system("robocopy \"#{$pathFile}/#{id}\" \"#{$pathMount}/#{i}/Test/\" \"*.*\" /NJH /NJS /NS /NC /NDL")
+	system("diskpart /s #{$pathScript}/script_unmount#{i}")
+end
+
+def gathering_results(i, id)
+	puts "Thread Start cpy".red
 	system("diskpart /s #{$pathScript}/script_mount#{i}")
 	system("diskpart /s #{$pathScript}/script_vm#{i}")
 	system("robocopy \"#{$pathFile}/#{id}\" \"#{$pathMount}/#{i}/Test/\" \"*.*\" /NJH /NJS /NS /NC /NDL")
@@ -91,6 +100,9 @@ def work()
 			    			@array[k] = 1
 			    			puts "Thread: #{i} Started: #{k}".red
 			    			copyFiles(i, id)
+			    			#attach
+			    			`"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe" storageattach "#{vms[k][1]}" --storagectl storage --port 1 --device 0 --type hdd --medium "d:\\Vhd\\#{i}.vhd"`
+			    			#
 			    			vm = VirtualBox::VM.find(vms[k][1].to_s)
 							mutex.synchronize do
 								vm.start
@@ -100,6 +112,7 @@ def work()
 								calculateprogress(times, vms[k], usertimeout, mutex)
 								sleep 1
 							end
+							#copy results
 							string = "UPDATE 'vms' SET progress = 100 WHERE ID = #{vms[k][0]}"
 							mutex.synchronize do
 								@db.execute(string)

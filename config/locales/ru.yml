@@ -1,0 +1,139 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+ru:
+
+  all:
+    add: 'Добавить'
+    back: 'Назад'
+    confirm: 'Подтвердить'
+    creator: 'Создатель'
+    default: 'По умолчанию'
+    delete: 'Удалить'
+    edit: 'Редактировать'
+    minutes: 'минуты'
+    or: 'или'
+    seconds: 'секунд'
+    show: 'Показать'
+
+  index:
+    index: 'Домашняя страница'
+
+  session:
+    introduce: 'Пожалуйста представьтесь'
+    log_in: 'Войти'
+    log_out: 'Выйти'
+    login: 'Вход'
+    signed_error: 'Не удалось войти'
+    signed_in: 'Вы успешно вошли'
+    signed_out: 'Вы успешно вышли'
+    signout: 'Выйти'
+    signup: 'Зарегистрироваться'
+
+  tasks:
+    add: 'Добавить'
+    additional_files: 'Дополнительные файлы'
+    advanced_options: 'Дополнительные параметры'
+    all: 'Все'
+    check_all: 'Выбрать все'
+    checked: 'Выбрано'
+    cmd: 'Командная строка'
+    create: 'Создание задачи'
+    creator: 'Создатель'
+    current: 'Просмотр текущей задачи'
+    custom: 'Пользовательский'
+    desktop: 'Только Настольные'
+    emptytask: 'В очереди нет задач!'
+    enter_tn: 'Введите имя задачи'
+    execute: 'Выполнение'
+    file: 'Файл'
+    filter: 'Фильтр'
+    go: 'Выполнить!'
+    mainfile: 'Основной файл'
+    mytask: 'Просмотр моих задач'
+    name: 'Имя задачи'
+    notasks: 'Нет текущих задач'
+    num: 'Номер'
+    num_machines: 'Количество одновременно тестируемых машин'
+    pending: 'Просмотр очереди задач'
+    progress: 'Прогресс'
+    restore: 'Сбросить виртуальную машину до начального состояния?'
+    results: 'Просмотр результатов'
+    select_vm: 'Выбор виртуальных машин'
+    server: 'Только серверные'
+    settimeout: 'Установить ограничение по времени'
+    state: 'Статус'
+    status: 'Статус'
+    step: 'Шаг'
+    timeout: 'Таймаут'
+    totalprogress: 'Общий прогресс'
+    upload_file: 'Загрузка файлов'
+    vms: 'Виртуальные машины'
+
+  user:
+    confirmpass: 'Подтверждение пароля'
+    create: 'Создать пользователя'
+    created: 'Пользователь успешно создан'
+    delete: 'Удалить'
+    destroyed: 'Пользователь успешно удалён'
+    edit: 'Редактировать'
+    editing: 'Редактирование пользователя'
+    email: 'Электронный адрес'
+    info: 'Информация о пользователе'
+    listing: 'Список пользователей'
+    loggedass: 'Вы вошли как'
+    name: 'Имя'
+    new: 'Новый пользователь'
+    notupdated: 'Не удалось изменить пользователя'
+    password: 'Пароль'
+    prohibites: 'не позволяют создать данного пользователя'
+    role: 'Роль'
+    show: 'Показать'
+    upd: 'Изменить пользователя'
+    updated: 'Пользователь успешно изменён'
+    users: 'Пользователи'
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: 'не может быть пустым'
+              too_short: 'слишком короткий'
+            email:
+              blank: 'не может быть пустым'
+              invalid: 'слишком короткий'
+            name:
+              blank: 'не может быть пустым'
+            password_confirmation:
+              confirmation: 'не совпадает'
+    attributes:
+      user:
+        name: 'Имя'
+        email: 'Электронный адрес'
+        password: 'Пароль'
+        password_confirmation: 'Подтверждение пароля'
+      sessions:
+        email: 'Электронный адрес'
+
+
+

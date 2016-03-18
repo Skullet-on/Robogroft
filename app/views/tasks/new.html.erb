@@ -1,25 +1,25 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h4>Create task</h4>
+    <h4><%= t('tasks.create') %></h4>
   </div>
   <div class="panel-body">
 
     <%= form_for @task, :url => { :action => "upload" }, :html=>{ :id => "sendform", :onsubmit =>
 "return validateForm(this)" } do |e| %>
 
-      <b><%= t('all.step') %> 1. <%= t('all.task_name') %> </b><br/>
-      Enter Task name:
+      <b><%= t('tasks.step') %> 1. <%= t('tasks.name') %> </b><br/>
+      <%= t('tasks.enter_tn') %>
       <div id="taskname" class="input-group" name='dynamic'>    
         <%= e.text_field :name, :class => "form-control", :value => "Task_#{@time}", :maxlength => "40" %>
-        <span class="input-group-addon"><%= t('all.task_name') %></span>
+        <span class="input-group-addon"><%= t('tasks.name') %></span>
       </div><br/>
 
-      <b><%= t('all.step') %> 2. <%= t('all.select_vms') %> </b><br/>
+      <b><%= t('tasks.step') %> 2. <%= t('tasks.select_vm') %> </b><br/>
       <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingTwo">
           <h4 class="panel-title">
             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Filter
+              <%= t('tasks.filter') %>
             </a>
           </h4>
         </div>
@@ -54,21 +54,21 @@
                 </tr>
                 <tr class="default">
                   <td style='text-align: center;'>
-                    <i><%= t('all.check_all') %> </i><%= check_box_tag('filter', 'checkall', false, :onClick => "filtero(this);", :checked => true) %>
+                    <i><%= t('tasks.check_all') %> </i><%= check_box_tag('filter', 'checkall', false, :onClick => "filtero(this);", :checked => true) %>
                     <div id="number"><h4 class="num"><%= @machines.size-1 %></h4></div>
-                    <%= t('all.checked') %>
+                    <%= t('tasks.checked') %>
                   </td>
                   <td style='text-align: left;'>
                     <input type="radio" name="group1" onclick="filtero(this)" value="x86"> x86<br>
                     <input type="radio" name="group1" onclick="filtero(this)" value="x64"> x64<br>
-                    <input type="radio" name="group1" onclick="filtero(this)" value=" " checked> <%= t('all.all') %><br>
-                    <input type="radio" name="group1" onclick="filtero(this)" value="custom"> <%= t('all.custom') %>
+                    <input type="radio" name="group1" onclick="filtero(this)" value=" " checked> <%= t('tasks.all') %><br>
+                    <input type="radio" name="group1" onclick="filtero(this)" value="custom"> <%= t('tasks.custom') %>
                   </td>
                   <td style='text-align: left;'>
-                    <input type="radio" name="group2" onclick="filtero(this)" value="server"> <%= t('all.server') %><br>
-                    <input type="radio" name="group2" onclick="filtero(this)" value="desktop"> <%= t('all.desktop') %><br>
-                    <input type="radio" name="group2" onclick="filtero(this)" value=" " checked> <%= t('all.all') %><br>
-                    <input type="radio" name="group2" onclick="filtero(this)" value="custom"> <%= t('all.custom') %>
+                    <input type="radio" name="group2" onclick="filtero(this)" value="server"> <%= t('tasks.server') %><br>
+                    <input type="radio" name="group2" onclick="filtero(this)" value="desktop"> <%= t('tasks.desktop') %><br>
+                    <input type="radio" name="group2" onclick="filtero(this)" value=" " checked> <%= t('tasks.all') %><br>
+                    <input type="radio" name="group2" onclick="filtero(this)" value="custom"> <%= t('tasks.custom') %>
                   </td>
                 </tr>
               </tbody>
@@ -102,43 +102,43 @@
         </table>
       </div><br/>
 
-      <b><%= t('all.step') %> 3. <%= t('all.upload_file') %> </b><br/>
+      <b><%= t('tasks.step') %> 3. <%= t('tasks.upload_file') %> </b><br/>
       <div id="filer">
-        <%= t('all.file') %>:
+        <%= t('tasks.file') %>:
         <div id="files" class="input-group has-default has-feedback" name="dynamicadd">
           <%= e.file_field  :file, :class => "form-control", :onchange =>"validateFiles(this);", :data => {:max_file_size => 32.megabytes}, accept: 'application/octet-stream', :multiple => true %>
-          <span class="input-group-addon">File</span>
+          <span class="input-group-addon"><%= t('tasks.file') %></span>
         </div>
-        <%= t('all.additional_files') %>:<br/>
+        <%= t('tasks.additional_files') %>:<br/>
       </div>
-      <input name='arrow' class='btn btn-link' type='button' onclick='addfile()' value='Add'><br/>
-      <%= t('all.CMD') %>:
+      <input name='arrow' class='btn btn-link' type='button' onclick='addfile()' value='<%= t('tasks.add') %>'><br/>
+      <%= t('tasks.cmd') %>:
       <div id="comd" class="input-group">
         <%= e.text_field :cmd, :class => "form-control", :size => 58, :value => "" %><br/>
-        <span class="input-group-addon"><%= t('all.cmd') %></span>
+        <span class="input-group-addon"><%= t('tasks.cmd') %></span>
       </div><br/>
 
-      <b><%= t('all.step') %> 4. <%= t('all.advanced_options') %> </b><br/>
-      Timeout:
+      <b><%= t('tasks.step') %> 4. <%= t('tasks.advanced_options') %> </b><br/>
+      <%= t('tasks.timeout') %>
       <div id="timeout" class="input-group">
         <span class="input-group-addon"><%= check_box :checktimeout, "", {:onClick => "enable_timeout(this);"} %></span>
         <%= e.text_field :timeout, :class => "form-control", :value => "", :disabled => true, :placeholder => "0" %>
         <span class="input-group-addon"><%= t('all.seconds') %></span>
       </div>
-      Number of concurrent machines:
+      <%= t('tasks.num_machines') %>:
       <%= e.select :number, (['1', '2', '3', '4'].map {|i| [i,i] }), {}, {:class => "form-control"}%>
-      Restore from backup?
+      <%= t('tasks.restore') %>
       <%= e.check_box :restore, {checked: true} %><br/>
-      Email:
+      <%= t('user.email') %>:
       <div id="email">
         <div id="emaildiv" class="input-group" name='dynamic'>
           <%= e.text_field :email, :multiple => true, :value => nil, :class => "form-control", :placeholder => "example@gmail.com", :onchange => 'addemail(this)' %>
-          <span class="input-group-addon"><%= t('all.email') %></span>
+          <span class="input-group-addon"><%= t('user.email') %></span>
         </div>
       </div><br/>
 
-      <b><%= t('all.step') %> 5. <%= t('all.execute') %> :) </b><br/>
-      <%= e.submit "GO", :class => "btn btn-primary btn-md btn-block" %>
+      <b><%= t('tasks.step') %> 5. <%= t('tasks.execute') %> :) </b><br/>
+      <%= e.submit t('tasks.go'), :class => "btn btn-primary btn-md btn-block" %>
     <% end %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 require 'colorize'
-require 'virtualbox'
-require File.expand_path("../app/config.rb", __FILE__)
+#require 'virtualbox'
+#require File.expand_path("../app/config.rb", __FILE__)
 
 =begin
 vm = VirtualBox::VM.find("win xp x86 sp2 IDE")
@@ -34,11 +34,17 @@ puts vm.storage_controllers[0].medium_attachments[1].medium.location
 puts vm.storage_controllers[0].medium_attachments[1].medium.uuid
 =end
 
-string = "#{$pathVBox} storageattach \"win 7 x86 sp1 AHCI\" --storagectl \"IDE\" --device 0 --port 1 --type hdd --medium \"d:/Vhd/2.vhd\""
-string2 = "#{$pathVBox} startvm \"adebf809-9820-40e3-8080-cfb10b25a413\""
-puts string2
-system("#{string2}")
-puts "ok"
+#string = "#{$pathVBox} storageattach \"win xp x86 sp2 IDE\" --storagectl \"IDE\" --device 0 --port 1 --type hdd --medium \"d:/Vhd/0.vhd\" && echo %errorlevel%"
+#string = "#{$pathVBox} storageattach {44bb4cce-0eab-48fd-a739-d50d213b06d9} --storagectl \"IDE\" --port 1 --device 0 --type hdd --medium \"d:\\Vhd\\2.vhd\""
+#string2 = "#{$pathVBox} startvm \"win 7 x86 sp1 AHCI\""
+#puts string
+#exec(string)
+#output = `env`
+output = `"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe" storageattach "win xp x86 sp2 IDE" --storagectl storage --port 1 --device 0 --type hdd --medium "d:\\Vhd\\3.vhd"`
+puts output
 #C:\Program Files\Oracle\VirtualBox>VBoxManage storageattach "win xp x86 sp2 IDE"
 # --storagectl "IDE контроллер" --device 0 --port 1 --type hdd --medium "d:\Vhd\2
 #.vhd"
+#rem   --storagectl "IDE" --device 0 --port 1 --type hdd --medium "d:\Vhd\2.vhd"
+#rem "win xp x86 sp2 IDE"
+#rem C

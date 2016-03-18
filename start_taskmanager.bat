@@ -1,0 +1,1 @@
+%ruby% D:\project\robogroft\tm.rb

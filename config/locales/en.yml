@@ -20,4 +20,94 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  index:
+    index: 'Home'
+  all:
+    back: 'Back'
+    all: 'All'
+    custom: 'Custom'
+    server: 'Server'
+    desktop: 'Desktop'
+    checked: 'Checked'
+    checkall: 'Check all'
+    step: 'Step'
+    taskname: 'Task name'
+    selectvm: 'Select VMs'
+    uploadfile: 'upload files'
+    advancedoptions: 'advanced options'
+    execute: 'Execute'
+    mainfile: 'Main file'
+    additionalfiles: 'Additional files'
+    cmd: 'CMD'
+    go: 'Execute!'
+    nummachines: 'The number of concurrent machines'
+    settimeout: 'Set timeout'
+    restore: 'Restore from backup?'
+    seconds: 'seconds'
+    minutes: 'minutes'
+    default: 'default'
+    add: 'Add'
+    edit: 'Edit'
+    delete: 'Delete'
+    show: 'Show'
+    filter: 'Filter'
+    notasks: 'No tasks'
+    state: 'State'
+    totalprogress: 'Total progress'
+    emptytask: 'Stack is empty!'
+    vms: 'Virtual machines'
+    creator: 'Creator'
+    confirm: 'Confirm'
+    or: 'or'
+
+  user:
+    name: 'Name'
+    email: 'Email'
+    role: 'Role'
+    password: 'Password'
+    confirmpass: 'Password confirmation'
+    upd: 'Update user'
+    editing: 'Editing user'
+    loggedass: 'Logged in as'
+    users: 'Users'
+    new: 'New user'
+    info: 'Information about user'
+    new: 'New user'
+    signup: 'Signup'
+    prohibites: 'не позволяют создать данного пользователя'
+    created: 'User was successfully created.'
+    updated: 'User was successfully updated.'
+    notupdated: 'User was not updated'
+    destroyed: 'User was successfully deleted.'
+    listing: 'Listing users'
+    show: 'Show'
+    edit: 'Edit'
+    delete: 'Delete'
+  session:
+    login: 'Login'
+    log_in: 'Log in'
+    log_out: 'Log out'
+    introduce: 'Please introduce yourself'
+    signed_in: 'You are signed in'
+    signed_out: 'You are signed out'
+    signed_error: 'You are not signed in'
+  tasks:
+    create: 'Create new task'
+    current: 'View current task'
+    pending: 'View pending tasks'
+    results: 'View results'
+    mytask: 'View my tasks'
+  
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: "can't be blank"
+              too_short: 'is too short (minimum is 6 characters)'
+            email:
+              blank: "can't be blank"
+              invalid: 'is invalid'
+            name:
+              blank: "can't be blank"

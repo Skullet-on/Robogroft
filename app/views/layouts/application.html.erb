@@ -40,7 +40,7 @@
     <div class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="col-sm-2">
-          <a class="navbar-brand" href="#">Robogroft</a>
+          <a class="navbar-brand" href="#">Robogroft </a>
         </div>
         <div class="col-md-8"></div>
 
@@ -61,9 +61,13 @@
                   <% end %>
                   <li role="separator" class="divider"><hr></li>
                   <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+                  <li><%= link_to_unless_current "English", locale: "en" %></li>
+                  <li><%= link_to_unless_current "Русский", locale: "ru" %></li>
                 <% else %>
-                  <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
-                  <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                  <li><%= link_to t('session.signup'), new_user_registration_path, :class => 'navbar-link'  %></li>
+                  <li><%= link_to t('session.log_in'), new_user_session_path, :class => 'navbar-link'  %></li>
+                  <li><%= link_to_unless_current "English", locale: "en" %></li>
+                  <li><%= link_to_unless_current "Русский", locale: "ru" %></li>
                 <% end %>
               </ul>
             </div>
@@ -84,7 +88,7 @@
           <% else %>
             <div >
               <%= t('session.introduce') %>:
-              <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %> <%= t('all.or') %> <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %>
+              <%= link_to t('session.log_in'), new_user_session_path, :class => 'navbar-link'  %> <%= t('all.or') %> <%= link_to t('session.signup'), new_user_registration_path, :class => 'navbar-link'  %>
             </div>
           <% end %>
         </div>
@@ -95,16 +99,16 @@
         </div>
         <div class="col-sm-2">
           <div class="list-group">
-            <a href="#" class="list-group-item active" role="button"><p>Index</p></a>
+            <a href="#" class="list-group-item active" role="button"><p><%= t('index.index') %></p></a>
             <% if current_user %>
-              <%= link_to "Create task", new_task_path, :class => 'list-group-item', :role => "button"%>
+              <%= link_to t('tasks.create'), new_task_path, :class => 'list-group-item', :role => "button"%>
             <% else %>
-              <%= link_to "Create task", new_task_path, :onclick => "return false", :class => 'list-group-item disabled', :disabled => "disabled", :role => "button"%>
+              <%= link_to t('tasks.create'), new_task_path, :onclick => "return false", :class => 'list-group-item disabled', :disabled => "disabled", :role => "button"%>
             <% end %>
-            <%= link_to "My tasks", tasks_path, :class => 'list-group-item', :role => "button"%>
-            <%= link_to "Current", current_tasks_path, :class => 'list-group-item', :role => "button"%>
-            <%= link_to "Pending", pending_tasks_path, :class => 'list-group-item', :role => "button"%>
-            <a href="#" class="list-group-item" role="button"><p><%= t('index.results') %></p></a>
+            <%= link_to t('tasks.mytask'), tasks_path, :class => 'list-group-item', :role => "button"%>
+            <%= link_to t('tasks.current'), current_tasks_path, :class => 'list-group-item', :role => "button"%>
+            <%= link_to t('tasks.pending'), pending_tasks_path, :class => 'list-group-item', :role => "button"%>
+            <a href="#" class="list-group-item" role="button"><p><%= t('tasks.results') %></p></a>
           </div>
       </div>
       </div><!--/row-->
@@ -112,7 +116,7 @@
       <footer class="container-fluid text-center">
         <p>&copy; Robogroft 2015</p>
       </footer>
-
+      
     </div> <!-- /container -->
 
   </body>

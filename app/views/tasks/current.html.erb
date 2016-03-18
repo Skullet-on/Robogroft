@@ -1,11 +1,11 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h4>Current task</h4>
+		<h4><%= t('tasks.current') %></h4>
 	</div>
 	<div class="panel-body" style="max-height:800px; overflow-y: auto; bgcolor:#000000;">
 		<% for i in 0..@tasks.size-1 %>
-			<b>Task name:</b> <%= @tasks[i].name %><br>
-			<b>Creator:</b> <% u = User.where(id: @tasks[i].user_id).first %><%= u.name %><br>
+			<b><%= t('tasks.name') %>:</b> <%= @tasks[i].name %><br>
+			<b><%= t('tasks.creator') %>:</b> <% u = User.where(id: @tasks[i].user_id).first %><%= u.name %><br>
 		<% end %>
 	</div>
 </div>
